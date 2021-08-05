@@ -1,6 +1,10 @@
-function playGame(){
+function playGame(playerInput){
+    // Function RPS game
+    // INPUT: 1, 2, 3
+
+
     clearMessages();
-    let playerInput = (1, 2, 3);
+    
 
     function getMoveName(argMoveId){
         if(argMoveId == 1){
@@ -74,7 +78,6 @@ function playGame(){
 
 }
 
-
 document.getElementById('play-rock').addEventListener('click', function(){
     playGame('1');
   });
@@ -84,10 +87,3 @@ document.getElementById('play-rock').addEventListener('click', function(){
   document.getElementById('play-scissors').addEventListener('click', function(){
     playGame('3');
   });
-
-
-
-
-  
-  
-  
