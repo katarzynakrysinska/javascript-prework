@@ -1,14 +1,14 @@
-// Inicjalizacja liczników
+// Game counter initialisation
 let computerPoints = 0;
 let playerPoints = 0;
 let numberOfRounds = 0;
-
-
+let winRate = 0.75;
 
 function playGame(playerInput){
     clearMessages();
 
-// ruchy
+
+// Translating initialisation values into moves
     function getMoveName(argMoveId){
         if(argMoveId == 1){
         return 'kamień';
@@ -19,18 +19,52 @@ function playGame(playerInput){
         } else {
         printMessage('Nie znam ruchu o id ' + argMoveId + '.');
         return 'nieznany ruch';
-        }
     }
-    
+}
 
-    let randomNumber = Math.floor(Math.random() * 3 + 1);
-    let computerMove = getMoveName(randomNumber);
-    let playerMove = getMoveName(playerInput);
-    
-    printMessage('Mój ruch to: ' + computerMove);
-    printMessage('Twój ruch to: ' + playerMove);
+// Random winning
+// let randomNumber = Math.floor(Math.random() * 3 + 1);
 
-// wyniki 
+// Rigged game 
+let randomNumber = Math.random();
+console.log(randomNumber);
+
+
+// let computerMove = getMoveName(randomNumber);
+let playerMove = getMoveName(playerInput);
+
+if(randomNumber < winRate){
+    // Player wins
+    switch (playerMove) {
+        case 'kamień': // condition1
+            computerMove = 'nożyce';  // instruction1
+            break;
+        case 'papier': // condition1
+            computerMove = 'kamień';  // instruction1
+            break;
+        case 'nożyce': // condition1
+            computerMove = 'papier';  // instruction1
+            break;
+    }
+} else {
+    // Computer wins 
+    switch (playerMove) {
+        case 'kamień': // condition1
+            computerMove = 'papier';  // instruction1
+            break;
+        case 'papier': // condition1
+            computerMove = 'nożyce';  // instruction1
+            break;
+        case 'nożyce': // condition1
+            computerMove = 'kamień';  // instruction1
+            break;
+    }
+}
+
+printMessage('Mój ruch to: ' + computerMove);
+printMessage('Twój ruch to: ' + playerMove);
+
+// Displaying results 
 
     displayResult(computerMove, playerMove);
 
@@ -39,27 +73,28 @@ function playGame(playerInput){
             printMessage('Jest remis!');
         } else if (( argComputerMove == 'kamień' && argPlayerMove == 'nożyce') || ( argComputerMove == 'papier' && argPlayerMove == 'kamień') || ( argComputerMove == 'nożyce' && argPlayerMove == 'papier')) {
             printMessage('Przegrywasz!');
-            computerPoints = computerPoints + 1; // counting computer wins
+            computerPoints = computerPoints + 1; // Computer wins
         } else {
         printMessage('Wygrywasz!');
-        playerPoints = playerPoints + 1;    // counting human wins
+        playerPoints = playerPoints + 1;    // Player wins
         }
         printMessage('Komputer zagrał ' + argComputerMove + ', a Człowiek zagrał ' + argPlayerMove);
     }
-    
-    numberOfRounds = numberOfRounds +1;
 
+    numberOfRounds = numberOfRounds +1;
 
     printMessage('Komputer  -  Ludź ');
     printMessage(computerPoints + ' - ' + playerPoints);
     printMessage('Liczba remisów ' + (numberOfRounds-(computerPoints+playerPoints)));
     printMessage('Liczba zagranych rund ' + numberOfRounds);
-
 }
   
-// knefle 
+// Buttons handling
 document.getElementById('play-rock').addEventListener('click', function(){
-    playGame('1'); 
+    for( let i = 0; i < 100; i ++) {
+        console.log('Loop iteration: ' + i);
+        playGame('1'); 
+    }
   });
 document.getElementById('play-paper').addEventListener('click', function(){
     playGame('2');
@@ -67,3 +102,4 @@ document.getElementById('play-paper').addEventListener('click', function(){
 document.getElementById('play-scissors').addEventListener('click', function(){
     playGame('3');
   });
+
