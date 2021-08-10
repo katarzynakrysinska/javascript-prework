@@ -1,15 +1,15 @@
+{
 // Game counter initialisation
-let computerPoints = 0;
-let playerPoints = 0;
-let numberOfRounds = 0;
-let winRate = 0.75;
+let computerPoints = 0,
+    playerPoints = 0,
+    numberOfRounds = 0,
+    winRate = 0.75;
 
 function playGame(playerInput){
     clearMessages();
 
-
 // Translating initialisation values into moves
-    function getMoveName(argMoveId){
+    const getMoveName = function(argMoveId){
         if(argMoveId == 1){
         return 'kamień';
         } else if(argMoveId == 2){
@@ -26,12 +26,13 @@ function playGame(playerInput){
 // let randomNumber = Math.floor(Math.random() * 3 + 1);
 
 // Rigged game 
-let randomNumber = Math.random();
+const randomNumber = Math.random();
 console.log(randomNumber);
 
 
 // let computerMove = getMoveName(randomNumber);
-let playerMove = getMoveName(playerInput);
+const playerMove = getMoveName(playerInput);
+
 
 if(randomNumber < winRate){
     // Player wins
@@ -65,10 +66,10 @@ printMessage('Mój ruch to: ' + computerMove);
 printMessage('Twój ruch to: ' + playerMove);
 
 // Displaying results 
+    
+    
 
-    displayResult(computerMove, playerMove);
-
-    function displayResult(argComputerMove, argPlayerMove){
+    const displayResult = function (argComputerMove, argPlayerMove){
         if( argComputerMove == argPlayerMove){
             printMessage('Jest remis!');
         } else if (( argComputerMove == 'kamień' && argPlayerMove == 'nożyce') || ( argComputerMove == 'papier' && argPlayerMove == 'kamień') || ( argComputerMove == 'nożyce' && argPlayerMove == 'papier')) {
@@ -81,7 +82,7 @@ printMessage('Twój ruch to: ' + playerMove);
         printMessage('Komputer zagrał ' + argComputerMove + ', a Człowiek zagrał ' + argPlayerMove);
     }
 
-    numberOfRounds = numberOfRounds +1;
+    numberOfRounds = numberOfRounds + 1;
 
     printMessage('Komputer  -  Ludź ');
     printMessage(computerPoints + ' - ' + playerPoints);
@@ -102,4 +103,4 @@ document.getElementById('play-paper').addEventListener('click', function(){
 document.getElementById('play-scissors').addEventListener('click', function(){
     playGame('3');
   });
-
+}
