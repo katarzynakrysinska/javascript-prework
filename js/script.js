@@ -2,23 +2,19 @@
 // Game counter initialisation
 let computerPoints = 0,
     playerPoints = 0,
-    numberOfRounds = 0,
-    winRate = 0.75;
+    numberOfRounds = 0;
 
-function playGame(playerInput){
+const playGame = function (playerInput){
     clearMessages();
 
 // Translating initialisation values into moves
-    const getMoveName = function(argMoveId){
-        if(argMoveId == 1){
+const getMoveName = function (argMoveId){
+    if(argMoveId == 1){
         return 'kamień';
-        } else if(argMoveId == 2){
-            return 'papier';
-        } else if(argMoveId == 3){
-            return 'nożyce';
-        } else {
-        printMessage('Nie znam ruchu o id ' + argMoveId + '.');
-        return 'nieznany ruch';
+    } else if(argMoveId == 2){
+        return 'papier';
+    } else if(argMoveId == 3){
+        return 'nożyce';
     }
 }
 
@@ -27,12 +23,11 @@ function playGame(playerInput){
 
 // Rigged game 
 const randomNumber = Math.random();
-console.log(randomNumber);
-
+    console.log(randomNumber);
+const winRate = 0.75;
 
 // let computerMove = getMoveName(randomNumber);
 const playerMove = getMoveName(playerInput);
-
 
 if(randomNumber < winRate){
     // Player wins
@@ -66,9 +61,6 @@ printMessage('Mój ruch to: ' + computerMove);
 printMessage('Twój ruch to: ' + playerMove);
 
 // Displaying results 
-    
-    
-
     const displayResult = function (argComputerMove, argPlayerMove){
         if( argComputerMove == argPlayerMove){
             printMessage('Jest remis!');
@@ -76,12 +68,13 @@ printMessage('Twój ruch to: ' + playerMove);
             printMessage('Przegrywasz!');
             computerPoints = computerPoints + 1; // Computer wins
         } else {
-        printMessage('Wygrywasz!');
-        playerPoints = playerPoints + 1;    // Player wins
+            printMessage('Wygrywasz!');
+            playerPoints = playerPoints + 1;    // Player wins
         }
-        printMessage('Komputer zagrał ' + argComputerMove + ', a Człowiek zagrał ' + argPlayerMove);
+            printMessage('Komputer zagrał ' + argComputerMove + ', a Człowiek zagrał ' + argPlayerMove);
     }
 
+    displayResult(computerMove, playerMove);
     numberOfRounds = numberOfRounds + 1;
 
     printMessage('Komputer  -  Ludź ');
